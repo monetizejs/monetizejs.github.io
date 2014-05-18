@@ -1,0 +1,11 @@
+{
+  "name": "monetizejs-api",
+  "version": "0.0.1",
+  "description": "MonetizeJS official API documentation",
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-load-plugins": "^0.5.1",
+    "gulp-inject": "^0.4.1",
+    "gulp-rimraf": "^0.1.0"
+  }
+}

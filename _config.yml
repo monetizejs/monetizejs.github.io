@@ -1,0 +1,9 @@
+# Site settings
+title: MonetizeJS
+email: contact.monetizejs@gmail.com
+baseurl: ""
+url: "http://api.monetizejs.com"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
