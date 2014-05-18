@@ -2,9 +2,11 @@
 layout: default
 ---
 
-<h1 id="api-1">API</h1>
+<h1 id="api">API</h1>
 
 <hr>
+
+
 
 <h2 id="what">What ?</h2>
 
@@ -25,6 +27,8 @@ layout: default
 </ul>
 
 <p>From small tips to freemium, the possibilities are infinite…</p>
+
+
 
 <h2 id="how">How ?</h2>
 
@@ -56,6 +60,8 @@ layout: default
 
 <p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as a <strong>minimum amount of charges or possible subscriptions</strong>. This way, the platform will be able to ask the user to perform a payment at the same time.</p>
 
+
+
 <h2 id="monetizejs">Monetize.js</h2>
 
 <p><strong>Monetize.js</strong> library is suitable for client side applications, including browser and mobile apps. Even without any server, you can check for user’s payments by using Monetize.js.</p>
@@ -72,7 +78,7 @@ layout: default
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"monetize.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">&lt;script src=<span class="hljs-string">"monetize.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span></code></pre>
 
 <blockquote>
   <p><strong>Tip:</strong> You can also load <strong>Monetize.js</strong> as an AMD module.</p>
@@ -82,7 +88,7 @@ layout: default
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">monetize</span><span class="pun">.</span><span class="pln">init</span><span class="pun">({</span><span class="pln">applicationID</span><span class="pun">:</span><span class="pln"> </span><span class="str">'5308c64d92bde8e8d2c772d6'</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.init({applicationID: <span class="hljs-string">'5308c64d92bde8e8d2c772d6'</span>});</code></pre>
 
 
 
@@ -103,18 +109,18 @@ layout: default
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">monetize</span><span class="pun">.</span><span class="pln">getPaymentsImmediate</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> payments</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">payments</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-        </span><span class="com">// User is logged in, you can check payments:</span><span class="pln">
-        paymentChecking</span><span class="pun">(</span><span class="pln">
-            payments</span><span class="pun">.</span><span class="pln">totalAmountOfCharges</span><span class="pun">,</span><span class="pln">
-            payments</span><span class="pun">.</span><span class="pln">runningSubscription
-        </span><span class="pun">);</span><span class="pln">
-    </span><span class="pun">}</span><span class="pln">
-    </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-        </span><span class="com">// User is not logged in...</span><span class="pln">
-    </span><span class="pun">}</span><span class="pln">
-</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
+    <span class="hljs-keyword">if</span>(payments) {
+        <span class="hljs-comment">// User is logged in, you can check payments:</span>
+        paymentChecking(
+            payments.totalAmountOfCharges,
+            payments.runningSubscription
+        );
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// User is not logged in...</span>
+    }
+});</code></pre>
 
 <dl>
 <dt>Try it:</dt>
@@ -149,9 +155,9 @@ function paymentsImmediate() {
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">monetize</span><span class="pun">.</span><span class="pln">getTokenInteractive</span><span class="pun">({</span><span class="pln">
-    applicationID</span><span class="pun">:</span><span class="pln"> </span><span class="str">'5308c64d92bde8e8d2c772d6'</span><span class="pln">
-</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.getTokenInteractive({
+    applicationID: <span class="hljs-string">'5308c64d92bde8e8d2c772d6'</span>
+});</code></pre>
 
 <p>This will bring your user to the <strong>MonetizeJS</strong> platform. After login and payment process, the platform will redirect the user back to your page with the token in the URL fragment.</p>
 
@@ -174,10 +180,10 @@ function tokenInteractiveRedirect() {
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">monetize</span><span class="pun">.</span><span class="pln">getTokenInteractive</span><span class="pun">({</span><span class="pln">
-    applicationID</span><span class="pun">:</span><span class="pln"> </span><span class="str">'5308c64d92bde8e8d2c772d6'</span><span class="pun">,</span><span class="pln">
-    redirectURL</span><span class="pun">:</span><span class="pln"> </span><span class="str">'http://abc.xyz/token_handler.html'</span><span class="pln">
-</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.getTokenInteractive({
+    applicationID: <span class="hljs-string">'5308c64d92bde8e8d2c772d6'</span>,
+    redirectURL: <span class="hljs-string">'http://abc.xyz/token_handler.html'</span>
+});</code></pre>
 
 
 
@@ -187,11 +193,11 @@ function tokenInteractiveRedirect() {
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">monetize</span><span class="pun">.</span><span class="pln">getTokenInteractive</span><span class="pun">({</span><span class="pln">
-    applicationID</span><span class="pun">:</span><span class="pln"> </span><span class="str">'5308c64d92bde8e8d2c772d6'</span><span class="pln">
-</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> token</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    </span><span class="pun">...</span><span class="pln">
-</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.getTokenInteractive({
+    applicationID: <span class="hljs-string">'5308c64d92bde8e8d2c772d6'</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, token)</span> {</span>
+    ...
+});</code></pre>
 
 <dl>
 <dt>Try it:</dt>
@@ -248,21 +254,21 @@ function tokenInteractivePopup() {
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-bash"><span class="pln">curl http</span><span class="pun">:</span><span class="com">//localhost:3000/api/payments?access_token=eyJ0eXAiOiJKV1...</span></code></pre>
+<pre class="prettyprint"><code class="language-bash hljs ">curl http://localhost:<span class="hljs-number">3000</span>/api/payments?access_token=eyJ0eXAiOiJKV1...</code></pre>
 
 <p>Or in the authorization header:</p>
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-bash"><span class="pln">curl http</span><span class="pun">:</span><span class="com">//localhost:3000/api/payments -H "Authorization: Bearer eyJ0eXAiOiJKV1..."</span></code></pre>
+<pre class="prettyprint"><code class="language-bash hljs ">curl http://localhost:<span class="hljs-number">3000</span>/api/payments -H <span class="hljs-string">"Authorization: Bearer eyJ0eXAiOiJKV1..."</span></code></pre>
 
 <p>The end point supports CORS, so you can call it from your web page:</p>
 
 
 
-<pre class="prettyprint prettyprinted"><code class="language-js"><span class="pln">$</span><span class="pun">.</span><span class="pln">ajax</span><span class="pun">(</span><span class="str">'http://localhost:3000/api/payments?access_token=eyJ0eXAiOiJKV1...'</span><span class="pun">)</span><span class="pln">
-</span><span class="pun">.</span><span class="pln">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">payments</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    </span><span class="pun">...</span><span class="pln">
-</span><span class="pun">});</span></code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">$.ajax(<span class="hljs-string">'http://localhost:3000/api/payments?access_token=eyJ0eXAiOiJKV1...'</span>)
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(payments)</span> {</span>
+    ...
+});</code></pre>
 
 <p>JSONP is also supported using the <code>callback</code> parameter.</p>
