@@ -10,7 +10,9 @@ layout: default
 
 <h2 id="what">What ?</h2>
 
-<p>Let’s say you are a developer and you want sell a web application or a mobile game. By default, you will choose between:</p>
+<p>If you are a developer and you want to sell a web application or a mobile game, you probably already asked yourself: how do I handle payments in my app?</p>
+
+<p>Typically, there are 2 kind of solutions:</p>
 
 <ul>
 <li>Implementing payment yourself, however it implies heavy developments in back end to handle users and transactions</li>
@@ -19,35 +21,26 @@ layout: default
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask a user for payment</strong> and frequently <strong>check that the user has actually paid</strong> without the need of any server logic or users management.</p>
 
-<p>For each of your applications, you can ask for different types of payment:</p>
-
-<ul>
-<li><strong>One-time charges</strong></li>
-<li><strong>Subscriptions</strong></li>
-</ul>
-
-<p>From small tips to freemium, the possibilities are infinite…</p>
-
 
 
 <h2 id="how">How ?</h2>
 
-<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe’s API</a>, which is based on charges and subscriptions. However, the concept of “application” is implemented in MonetizeJS and the link between a user and an application is defined as follows:</p>
+<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe</a>, which lets you charge a user and handle recurring payments. However, the concept of “application” is implemented in MonetizeJS and the link between a user and an application is defined as follows:</p>
 
 <ul>
-<li>A user has a <strong>total amount of charges</strong> for a given application (can be 0),</li>
-<li>This user may have a <strong>running subscription</strong> for that application (no more than 1).</li>
+<li>A user has a <strong>total charge</strong> for a given application. These founds are convertible to a <strong>one-time charge</strong> option for that application, and eventually, <strong>invitations</strong> for other users.</li>
+<li>Independently, this user may also have <strong>running subscriptions</strong> for that application. These running subscriptions are usually composed of a personal <strong>subscription</strong> option, and eventually, <strong>invitations</strong> for other users.</li>
 </ul>
 
-<p>Every time a user comes to your application, all you have to do is:</p>
+<p>Every time a user comes to your application, you will be able to:</p>
 
 <ol>
-<li>Retrieve one’s total amount of charges and one’s running subscription: no need to redirect the user to the platform, unless the user is not logged in on the platform.</li>
-<li>Ask one for a new charge or a subscription: redirecting the user to the platform is required.</li>
+<li>Retrieve one’s current option: one-time charge and/or subscription one’s payed for or has been invited to. You don’t need to redirect a user to the MonetizeJS platform, unless the user is not logged in on the platform or doesn’t have the required payment option.</li>
+<li>Ask one for a new charge or a subscription.</li>
 </ol>
 
 <blockquote>
-  <p><strong>Note:</strong> a redirection to the platform can be required for both: <strong>login and payment</strong>.</p>
+  <p><strong>Note:</strong> once logged to the platform, a user will automatically be logged in on that computer during 3 months using the “remember me” cookie, so that you don’t have to redirect the user for a loggin every time one comes back to your application.</p>
 </blockquote>
 
 <p>Here is the typical workflow:</p>
@@ -59,8 +52,6 @@ layout: default
 </ol>
 
 <p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as a <strong>minimum amount of charges or possible subscriptions</strong>. This way, the platform will be able to ask the user to perform a payment at the same time.</p>
-
-
 
 <h2 id="monetizejs">Monetize.js</h2>
 
