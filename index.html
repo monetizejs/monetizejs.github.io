@@ -27,7 +27,9 @@ layout: default
 
 <h2 id="how">How ?</h2>
 
-<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe</a>, which lets you charge users and handle recurring payments. However, the concept of “application” is implemented in MonetizeJS and the link between users and applications is defined as follows:</p>
+<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe</a>, which lets you charge users and handle recurring payments. Beside using Stripe for performing payment transactions, MonetizeJS handles the link between your users and your application so that you don’t have to manage users yourself in a database.</p>
+
+<p>In MonetizeJS, the link between users and applications is defined as follows:</p>
 
 <ul>
 <li>A user has a <strong>total funds</strong> for a given application. These funds are convertible to a <strong>one-time charge</strong> option for that application, and eventually, <strong>invitations</strong> for other users.</li>
@@ -37,23 +39,23 @@ layout: default
 <p>Every time a user comes to your application, you will be able to:</p>
 
 <ol>
-<li>Retrieve user’s current option: one-time charge and/or subscription one has payed for, or has been invited to. You don’t have to redirect a user to the MonetizeJS platform, unless the user is not logged in on the platform or doesn’t have the required payment option.</li>
-<li>Ask one for a new charge or a subscription.</li>
+<li>Retrieve user’s payment option: one-time charge and/or subscription one has payed for, or has been invited to. A redirection to the MonetizeJS platform will be performed in case the user is not logged in or doesn’t have the required payment option.</li>
+<li>Ask for a new charge or a subscription via a redirection to the MonetizeJS plateform.</li>
 </ol>
 
 <blockquote>
-  <p><strong>Note:</strong> once logged in for the first time, a user will automatically be logged on that computer using a “remember me” cookie. That way you don’t have to perform a redirection every time a user comes back to  your application.</p>
+  <p><strong>Note:</strong> once logged in for the first time, a user will automatically be logged on that computer using a “remember me” cookie. This way you don’t have to perform a redirection every time a user comes back to  your application.</p>
 </blockquote>
 
 <p>Here is the typical workflow:</p>
 
 <ol>
-<li><p>Retrieve one-time charge/subscription without redirection (the user has to be logged in).</p></li>
-<li><p>If retrieve succeeded, validate one-time charge/subscription. If it doesn’t match your requirement, redirect the user to the platform for payment.</p></li>
-<li><p>If retrieve failed, redirect the user to the platform for login and, eventually, for payment.</p></li>
+<li><p>Retrieval of one-time charge/subscription without redirection (the user has to be logged in).</p></li>
+<li><p>If retrieval succeeded, validation of one-time charge/subscription. If it doesn’t match your requirement, redirection to the platform for payment.</p></li>
+<li><p>If retrieval failed, redirection to the platform for login and, eventually, for payment.</p></li>
 </ol>
 
-<p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as possible payment options (one-time charge and/or subscription). This way, the platform will be able to ask the user to perform a payment at the same time.</p>
+<p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as possible payment options (one-time charge and/or subscription). This way, the platform will be able to ask the user for a payment at the same time.</p>
 
 <h2 id="monetizejs">Monetize.js</h2>
 
