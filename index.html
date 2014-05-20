@@ -25,9 +25,11 @@ layout: default
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask a user for payments</strong> and frequently <strong>check that the user has actually paid</strong> without the need of implementing server logic or users management.</p>
 
+
+
 <h2 id="how">How ?</h2>
 
-<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe</a>, which lets you charge users and handle recurring payments. Beside using Stripe for performing payment transactions, MonetizeJS handles the link between your users and your application so that you don’t have to manage users yourself in a database.</p>
+<p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/docs/api">Stripe</a>, which lets you charge users and handle recurring payments. Beside using Stripe to perform payment transactions, MonetizeJS handles the link between your users and your application so that you don’t have to manage users yourself in a database.</p>
 
 <p>In MonetizeJS, the link between users and applications is defined as follows:</p>
 
@@ -39,8 +41,8 @@ layout: default
 <p>Every time a user comes to your application, you will be able to:</p>
 
 <ol>
-<li>Retrieve user’s payment option: one-time charge and/or subscription one has payed for, or has been invited to. A redirection to the MonetizeJS platform will be performed in case the user is not logged in or doesn’t have the required payment option.</li>
-<li>Ask for a new charge or a subscription via a redirection to the MonetizeJS plateform.</li>
+<li>Retrieve user’s payment option: one-time charge and/or subscription one has payed for, or has been invited to. A redirection to the MonetizeJS platform will be necessary in case the user is not logged in or doesn’t have the required payment option.</li>
+<li>Ask for a new charge or a subscription via a redirection to the MonetizeJS platform.</li>
 </ol>
 
 <blockquote>
@@ -76,6 +78,8 @@ layout: default
 <pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"//d3pv21y5gaggbw.cloudfront.net/api/js/latest/monetize.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
 
 <p>It can also be retrieved from <strong>GitHub</strong>, hacked and hosted by you:</p>
+
+
 
 <pre class="prettyprint"><code class="language-bash hljs ">git clone https://github.com/monetizejs/monetize.js.git</code></pre>
 
@@ -139,6 +143,8 @@ function paymentsImmediate() {
 <blockquote>
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
+
+
 
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
