@@ -9,7 +9,7 @@ title: API
 
 
 
-<h2 id="what">What ?!!</h2>
+<h3 id="what">What ?!!</h3>
 
 <p>If you are reading this, chances are you are a developer that wants to sell an HTML5 application and you probably already asked yourself:</p>
 
@@ -26,9 +26,7 @@ title: API
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask a user for payments</strong> and frequently <strong>check that the user has actually paid</strong> without the need of implementing server logic or user management.</p>
 
-
-
-<h2 id="how">How ?</h2>
+<h3 id="how">How ?</h3>
 
 <p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/">Stripe</a>, which lets you charge users and handle recurring payments. Beside calling Stripe to perform payments, MonetizeJS handles the link between your users and your application so you don’t have to manage users yourself in a database.</p>
 
@@ -70,8 +68,6 @@ title: API
 </ol>
 
 <p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as required pricing options. Thus, the platform will be able to ask the user for a payment at the same time.</p>
-
-
 
 <h2 id="monetizejs">Monetize.js</h2>
 
@@ -120,6 +116,8 @@ title: API
 
 <p><code>getPaymentsImmediate</code> retrieves payments without redirection, assuming the user is already logged in:</p>
 
+
+
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
     <span class="hljs-keyword">if</span>(payments) {
         <span class="hljs-comment">// User is logged in, you can check payments:</span>
@@ -156,11 +154,15 @@ function paymentsImmediate() {
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
 
+
+
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
 <p>When <code>getPaymentsImmediate</code> fails because the user is not logged in or if the user doesn’t have the required pricing option, you will have to call <code>getPaymentsInteractive</code>, passing the possible pricing options as a parameter. The will redirect the user to the platform for login, if not already logged in, and for payment, if the user doesn’t have one of the expected pricing options.</p>
 
 <p>Here is how you perform a full-page redirection:</p>
+
+
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive();</code></pre>
 
@@ -183,13 +185,19 @@ function tokenInteractiveRedirect() {
   <p><strong>Tip:</strong> You can specify a custom redirect URL, as long as it’s declared in the application authorized redirect URLs:</p>
 </blockquote>
 
+
+
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     redirectURL: <span class="hljs-string">'http://mydomain.com/otherpage.html'</span>
 });</code></pre>
 
+
+
 <h4 id="interactive-with-popup">Interactive with popup</h4>
 
 <p>If you prefer to popup a window in order to keep the your page context, just add a callback, much like <code>getPaymentsImmediate</code>:</p>
+
+
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, token)</span> {</span>
     ...
@@ -224,6 +232,8 @@ function tokenInteractivePopup() {
   </ul>
 </blockquote>
 
+
+
 <h2 id="oauth2">OAuth2</h2>
 
 <p><strong>MonetizeJS</strong> platform is OAuth2 compliant.</p>
@@ -257,6 +267,8 @@ function tokenInteractivePopup() {
 </blockquote>
 
 <p>The end point supports CORS, so you can call it from the browser:</p>
+
+
 
 <pre class="prettyprint"><code class="language-js hljs ">$.ajax(<span class="hljs-string">'http://localhost:3000/api/payments?access_token=USER_TOKEN_HERE'</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(payments)</span> {</span>
