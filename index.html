@@ -11,7 +11,7 @@ title: API
 
 <h3 id="what">What ?!!</h3>
 
-<p>If you are reading this, chances are you are a developer that wants to sell an HTML5 application and you probably already asked yourself:</p>
+<p>If you are reading this, chances are you are a developer, you want to sell an HTML5 application and you probably asked yourself:</p>
 
 <blockquote>
   <p><em>“how do I handle payments in my application?”</em></p>
@@ -21,12 +21,10 @@ title: API
 
 <ul>
 <li>You implement payments yourself, however it implies heavy developments in back end,</li>
-<li>Or you deal with a store, but it will cost you a substantial part of the actual price.</li>
+<li>Or you deal with a store, but it will retain a substantial part of the price.</li>
 </ul>
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask a user for payments</strong> and frequently <strong>check that the user has actually paid</strong> without the need of implementing server logic or user management.</p>
-
-
 
 <h3 id="how">How ?</h3>
 
@@ -61,17 +59,15 @@ title: API
   <p><strong>Note:</strong> once logged in for the first time, a user will automatically be logged on that computer using a “remember me” cookie. This will prevent you to perform a redirection every time a user comes back to your application.</p>
 </blockquote>
 
-<p>Here is a typical workflow:</p>
+<p>Here is a typical verification workflow:</p>
 
-<ol>
-<li><p>Retrieve user’s once-off charge or subscription without redirection (user has to be logged in).</p></li>
-<li><p>If retrieve succeeded, validate once-off charge/subscription. If it doesn’t match your expectation, redirect the user to the platform for payment.</p></li>
-<li><p>If retrieve failed, redirect the user to the platform for login and, eventually, for payment.</p></li>
-</ol>
+<ul>
+<li><p><strong>Step 1:</strong> Retrieve user’s once-off charge or subscription in your application without redirection (user has to be logged in).</p></li>
+<li><p><strong>Step 2.a:</strong> If retrieve succeeded, validate once-off charge/subscription in your application. If it doesn’t match your expectation, redirect the user to the platform for payment.</p></li>
+<li><p><strong>Step 2.b:</strong> If retrieve failed, redirect the user to the platform for login and, eventually, for payment.</p></li>
+</ul>
 
 <p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as required pricing options. Thus, the platform will be able to ask the user for a payment at the same time.</p>
-
-
 
 <h2 id="monetizejs">Monetize.js</h2>
 
@@ -135,7 +131,7 @@ title: API
     }
 });</code></pre>
 
-<p><a class="btn btn-link" id="payments-immediate">Try it</a></p>
+<p><a class="btn btn-link" id="payments-immediate"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
 
 <blockquote>
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
@@ -159,13 +155,13 @@ title: API
 
 
 
-<pre class="prettyprint"><code class=" hljs css"><span class="hljs-tag">monetize</span><span class="hljs-class">.getPaymentsInteractive</span>(<span class="hljs-rules">{
-    <span class="hljs-rule"><span class="hljs-attribute">summary</span>:<span class="hljs-value"> true
-</span></span></span>});</code></pre>
+<pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
+    summary: <span class="hljs-literal">true</span>
+});</code></pre>
 
 <p>After login and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
 
-<p><a class="btn btn-link" id="token-interactive-redirect">Try it</a></p>
+<p><a class="btn btn-link" id="token-interactive-redirect"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
 
 <blockquote>
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you have declared the redirect URL in your app settings):</p>
@@ -190,7 +186,7 @@ title: API
     ...
 });</code></pre>
 
-<p><a class="btn btn-link" id="token-interactive-popup">Try it</a></p>
+<p><a class="btn btn-link" id="token-interactive-popup"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
 
 <blockquote>
   <p><strong>Careful!</strong> Using popups, be sure to trigger <code>getPaymentsInteractive</code> from a user click event, otherwise popups will be blocked by the browser.</p>
