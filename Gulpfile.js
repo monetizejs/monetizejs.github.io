@@ -26,7 +26,7 @@ gulp.task('copy-css', ['clean-css'], function() {
 });
 
 gulp.task('build-head', ['copy-assets', 'copy-css'], function() {
-	return gulp.src('./_layouts/default.html')
+	return gulp.src('./_includes/head.html')
 		.pipe(plugins.inject(
 			gulp.src('./css/main-*', { read: false }),
 			{ starttag: '<!-- inject:app-style:{{ext}} -->' }))
@@ -46,7 +46,7 @@ gulp.task('build-head', ['copy-assets', 'copy-css'], function() {
 					return '<img class="logo" src="' + filepath + '" width="210">';
 				}
 			}))
-		.pipe(gulp.dest('./_layouts/'));
+		.pipe(gulp.dest('./_includes/'));
 
 });
 

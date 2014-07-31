@@ -1,82 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MonetizeJS - {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <!-- inject:app-icon -->
-    <link rel="icon" href="/assets/icon-c66cbdea.ico" type="image/x-icon">
-    <!-- endinject -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,400,900'/>
-    <!-- inject:app-style:css -->
-    <link rel="stylesheet" href="/css/main-69cd6ddd.css">
-    <!-- endinject -->
-    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
-    <script src="monetize.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script>
-        $(function() {
-            var sidebarItems = '';
-            $('h1, h2').each(function() {
-                if(this.tagName == 'H1') {
-                    sidebarItems += '<li class="tab-title"><h4>' + this.innerHTML + '</h4></li>';
-                }
-                else {
-                    sidebarItems += '<li class="tab-item"><a href="#' + this.id + '"><span class="glyphicon glyphicon-chevron-right"></span> ' + this.innerHTML + '</a></li>';
-                }
-            });
-            sidebarItems += '<a href="javascript:;" class="text-right scroll-top"><span class="glyphicon glyphicon-arrow-up"></span></a>';
-            $('.side-bar ul').html(sidebarItems).find('li.tab-item:first').addClass('active');
-            $('.scroll-top').click(function() {
-                $('html, body').animate({ scrollTop: 0 }, "slow");
-            });
-        });
-    </script>
-</head>
+{% include head.html %}
 
 <body class="doc" data-spy="scroll" data-target="#side-nav">
-<div class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="https://monetizejs.com" class="ng-scope" title="MonetizeJS">
-                <!-- inject:logo -->
-                <img class="logo" src="/assets/logo-df9f2e5d.png" width="210">
-                <!-- endinject -->
-            </a>
 
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/" title="API">API</a></li>
-                <li><a href="/faq/" title="FAQ">FAQ</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<a href="https://github.com/monetizejs/monetize.js">
-    <img style="position: absolute; top: 0; right: 0; border: 0;"
-         src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
-         alt="Fork me on GitHub"
-         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+{% include navbar.html %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 side-bar" id="side-nav">
-            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="85">
-            </ul>
-        </div>
-        <div class="col-md-9 sub-page">
-            {{ content }}
-        </div>
+<div class="tiny-container">
+    <div class="page-container">
+        {{ content }}
     </div>
 </div>
 </body>

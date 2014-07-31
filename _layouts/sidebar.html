@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body class="doc" data-spy="scroll" data-target="#side-nav">
+
+{% include navbar.html %}
+
+<div class="container">
+    <div class="row">
+        <script>
+            $(function() {
+                var sidebarItems = '';
+                $('h1, h2').each(function() {
+                    if(this.tagName == 'H1') {
+                        sidebarItems += '<li class="tab-title"><h4>' + this.innerHTML + '</h4></li>';
+                    }
+                    else {
+                        sidebarItems += '<li class="tab-item"><a href="#' + this.id + '"><span class="glyphicon glyphicon-chevron-right"></span> ' + this.innerHTML + '</a></li>';
+                    }
+                });
+                sidebarItems += '<br><a class="btn btn-link" id="scroll-top"><span class="glyphicon glyphicon-arrow-up"></span>Up</a>';
+                $('.side-bar ul').html(sidebarItems).find('li.tab-item:first').addClass('active');
+                $('#scroll-top').click(function() {
+                    $('html, body').animate({ scrollTop: 0 }, "slow");
+                });
+            });
+        </script>
+        <div class="col-md-3 side-bar" id="side-nav">
+            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="55">
+            </ul>
+        </div>
+        <div class="col-md-9 page-container">
+            {{ content }}
+        </div>
+    </div>
+</div>
+</body>
+</html>
