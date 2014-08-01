@@ -26,6 +26,8 @@ title: API
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask a user for payments</strong> and frequently <strong>check that the user has actually paid</strong> without the need of implementing server logic or user management.</p>
 
+
+
 <h3 id="how">How ?</h3>
 
 <p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/">Stripe</a>, which lets you charge users and handle recurring payments. Beside calling Stripe to perform payments, MonetizeJS handles the link between your users and your application so you don’t have to manage users yourself in a database.</p>
@@ -71,6 +73,8 @@ title: API
 
 <hr>
 
+
+
 <h2 id="monetizejs">Monetize.js</h2>
 
 <p><strong>Monetize.js</strong> library is suitable for client side applications, including browser or any HTML5 application.</p>
@@ -87,11 +91,9 @@ title: API
 
 
 
-<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"//d3pv21y5gaggbw.cloudfront.net/api/js/latest/monetize.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
+<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"//cdn.monetizejs.com/api/js/latest/monetize.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
 
-<p>It can also be cloned from <strong>GitHub</strong>, hosted and hacked by you:</p>
-
-
+<p>It can also be cloned from <strong>GitHub</strong>, to be hosted and hacked by you:</p>
 
 <pre class="prettyprint"><code class="language-bash hljs ">git clone https://github.com/monetizejs/monetize.js.git</code></pre>
 
@@ -139,13 +141,13 @@ title: API
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
 
+
+
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
-<p>If <code>getPaymentsImmediate</code> fails, it’s certainly because the user is not logged in or the user doesn’t have the required pricing option. Thus, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform for login, if not already logged in, and for payment, if the user doesn’t meet one of your expected pricing option.</p>
+<p>If the user is not logged in or doesn’t have the required pricing option, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform.</p>
 
 <p>Here is how you perform a full-page redirection:</p>
-
-
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     pricingOptions: [<span class="hljs-string">'alias1'</span>, <span class="hljs-string">'alias2'</span>]
@@ -153,17 +155,17 @@ title: API
 
 <p>Here, you will provide us with a list of <code>pricingOptions</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will be performed.</p>
 
+<p><a class="btn btn-link" id="token-interactive-redirect"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can use the <code>summary</code> parameter:</p>
-
-
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     summary: <span class="hljs-literal">true</span>
 });</code></pre>
 
-<p>After login and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
+<p><a class="btn btn-link" id="token-interactive-redirect-summary"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
 
-<p><a class="btn btn-link" id="token-interactive-redirect"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+<p>After login and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
 
 <blockquote>
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you have declared the redirect URL in your app settings):</p>
@@ -195,6 +197,8 @@ title: API
 </blockquote>
 
 <hr>
+
+
 
 <h2 id="oauth2">OAuth2</h2>
 
@@ -232,6 +236,8 @@ title: API
 
 <hr>
 
+
+
 <h2 id="rest">REST</h2>
 
 <p><strong>MonetizeJS</strong> platform has a single end point in its REST API: <code>GET /api/payments</code>.</p>
@@ -264,6 +270,8 @@ title: API
 <p>JSONP is also supported using the <code>callback</code> parameter.</p>
 
 <hr>
+
+
 
 <h2 id="couchdb">CouchDB</h2>
 
