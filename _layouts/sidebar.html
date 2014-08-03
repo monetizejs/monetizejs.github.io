@@ -34,6 +34,39 @@
         <div class="col-md-9 page-container">
             {{ content }}
         </div>
+        <script>
+            $(function() {
+                function paymentsCb(err, payments) {
+                    if(err) {
+                        alert('Error: ' + JSON.stringify(err));
+                    }
+                    else if(payments) {
+                        alert('User is logged in!\n\nCharge option: ' + JSON.stringify(payments.chargeOption) + '\n\nSubscription option: ' + JSON.stringify(payments.subscriptionOption));
+                    }
+                }
+                var monetize = MonetizeJS({
+                    applicationID: 'rgqfxEqCTsPvUoxF'
+                });
+                $('#payments-immediate').click(function() {
+                    monetize.getPaymentsImmediate(paymentsCb);
+                });
+                $('#payments-interactive-redirect').click(function() {
+                    monetize.getPaymentsInteractive({
+                        pricingOptions: ['subscription_option_no1', 'charge_option_no2']
+                    });
+                });
+                $('#payments-interactive-popup').click(function() {
+                    monetize.getPaymentsInteractive({
+                        pricingOptions: ['subscription_option_no1', 'charge_option_no2']
+                    }, paymentsCb);
+                });
+                $('#payments-interactive-redirect-summary').click(function() {
+                    monetize.getPaymentsInteractive({
+                        summary: true
+                    });
+                });
+            });
+        </script>
     </div>
 </div>
 </body>
