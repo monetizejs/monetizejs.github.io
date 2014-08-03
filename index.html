@@ -26,8 +26,6 @@ title: API
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> + Stripe fees), it provides painless ways to <strong>ask your users for payments</strong> and frequently <strong>check that users have actually paid</strong> without the need of implementing server logic or user management.</p>
 
-
-
 <h3 id="how">How ?</h3>
 
 <p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/">Stripe</a>, which lets you charge users and handle recurring payments. Beside calling Stripe to perform payments, MonetizeJS handles user identities for you, so that you don’t have to manage users in a database. Each MonetizeJS user is potentially linked to your application via the payment of <strong>pricing options</strong> that you define for your application. </p>
@@ -78,10 +76,8 @@ title: API
 <p><strong>Monetize.js</strong> library is suitable for client side applications, including browser or any HTML5 application.</p>
 
 <blockquote>
-  <p><strong>Careful!</strong> Browsers don’t protect you against user scripts. If payments are critical for your application, you can use Monetize.js client-side library to retrieve a token and then use our REST API in back-end to securely verify users’ payments. See the <a href="#rest">REST API section</a> for more information.</p>
+  <p><strong>Careful!</strong> Browsers don’t protect you against user scripts. If payments are critical for your application, you can use Monetize.js client-side library to retrieve an access token and then use our REST API to securely verify payments in your back-end. See the <a href="#rest">REST API section</a> for more information.</p>
 </blockquote>
-
-
 
 <h3 id="load-the-library">Load the library</h3>
 
@@ -135,7 +131,7 @@ title: API
     }
 });</code></pre>
 
-<p><a class="btn btn-link" id="payments-immediate"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+<p><a class="btn btn-warning" id="payments-immediate">Try it</a></p>
 
 <blockquote>
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
@@ -155,7 +151,7 @@ title: API
 
 <p>Provide us with a list of <code>pricingOptions</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will occur.</p>
 
-<p><a class="btn btn-link btn-lg" id="token-interactive-redirect"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+<p><a class="btn btn-warning" id="payments-interactive-redirect">Try it</a></p>
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can use the <code>summary</code> parameter:</p>
 
@@ -163,15 +159,13 @@ title: API
     summary: <span class="hljs-literal">true</span>
 });</code></pre>
 
-<p><a class="btn btn-link btn-lg" id="token-interactive-redirect-summary"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+<p><a class="btn btn-warning" id="payments-interactive-redirect-summary">Try it</a></p>
 
 <p>After login and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
 
 <blockquote>
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you have declared the redirect URL in your application settings):</p>
 </blockquote>
-
-
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>],
@@ -192,7 +186,7 @@ title: API
     ...
 });</code></pre>
 
-<p><a class="btn btn-link btn-lg" id="token-interactive-popup"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
+<p><a class="btn btn-warning" id="payments-interactive-popup">Try it</a></p>
 
 <blockquote>
   <p><strong>Careful!</strong> Using popups, be sure to trigger <code>getPaymentsInteractive</code> from a user click event, otherwise popups will be blocked by the browser. <br>
@@ -205,11 +199,11 @@ title: API
 
 <p><strong>MonetizeJS</strong> platform is OAuth2 compliant. Which means you can perform payments through a standard OAuth2 flow and check payments using a bearer token.</p>
 
+<p>When integrating an OAuth2 authorization flow with identity providers like Google or Facebook, you usually perform a redirection for login and asking user permissions. This is what MonetizeJS does, except that the permissions are actually a payment.</p>
+
 <blockquote>
   <p><strong>Note</strong>: The following paragraph describes how to implement the “authorization code” flow. The platform also supports “implicit grant”, but you should probably use <a href="#monetizejs">Monetize.js client-side library</a> instead.</p>
 </blockquote>
-
-<p>When integrating an OAuth2 flow with identity providers like Google or Facebook, you usually perform a redirection for login and asking some permissions. This is what MonetizeJS does, except that the permissions are actually a payment.</p>
 
 <p>To ask a user for login and payments, just redirect the user to the <code>authorize</code> endpoint:</p>
 
@@ -240,7 +234,7 @@ title: API
 <p>Note that the access token has no expiration, so you can reuse it anytime to check user’s payments using the REST API. To perform another payment, you will start a new OAuth2 flow, changing the <code>pricing_options</code> parameter to your need.</p>
 
 <blockquote>
-  <p><strong>Note</strong>: You are responsible for keeping your <code>client_secret</code> and users’ <code>access_token</code> in a safe place.</p>
+  <p><strong>Careful!</strong> You are responsible for keeping your <code>client_secret</code> and users’ <code>access_token</code> in a safe place.</p>
 </blockquote>
 
 <hr>
