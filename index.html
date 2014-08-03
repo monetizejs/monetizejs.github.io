@@ -129,8 +129,8 @@ title: API
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
     <span class="hljs-keyword">if</span>(payments) {
         <span class="hljs-comment">// User is logged in, you can check payments</span>
-        console.log(payments.currentCharge);
-        console.log(payments.currentSubscription);
+        console.log(payments.chargeOption);
+        console.log(payments.subscriptionOption);
     }
     <span class="hljs-keyword">else</span> {
         <span class="hljs-comment">// User is not logged in...</span>
@@ -142,8 +142,6 @@ title: API
 <blockquote>
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
-
-
 
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
@@ -157,13 +155,11 @@ title: API
     pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
 });</code></pre>
 
-<p>Here, you will provide us with a list of <code>pricingOptions</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will be performed.</p>
+<p>Provide us with a list of <code>pricingOptions</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will occur.</p>
 
 <p><a class="btn btn-link btn-lg" id="token-interactive-redirect"><span class="glyphicon glyphicon-arrow-right"></span> Try it</a></p>
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can use the <code>summary</code> parameter:</p>
-
-
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     summary: <span class="hljs-literal">true</span>
@@ -207,41 +203,47 @@ title: API
 
 <hr>
 
-
-
 <h2 id="oauth2">OAuth2</h2>
 
-<p><strong>MonetizeJS</strong> platform is OAuth2 compliant. Which means you can perform user payments through a standard OAuth2 flow and check payments using a bearer token.</p>
+<p><strong>MonetizeJS</strong> platform is OAuth2 compliant. Which means you can perform payments through a standard OAuth2 flow and check payments using a bearer token.</p>
 
 <blockquote>
   <p><strong>Note</strong>: The following paragraph describes how to implement the “authorization code” flow. The platform also supports “implicit grant”, but you should probably use <a href="#monetizejs">Monetize.js client-side library</a> instead.</p>
 </blockquote>
 
-<p>When integrating an authentication/authorization flow with identity providers like Google or Facebook, you usually perform a redirection to login and to ask a user for some permissions. This is what MonetizeJS does, except that the permissions are replaced by a payment.</p>
+<p>When integrating an OAuth2 flow with identity providers like Google or Facebook, you usually perform a redirection for login and asking some permissions. This is what MonetizeJS does, except that the permissions are actually a payment.</p>
 
 <p>To ask a user for login and payments, just redirect the user to the <code>authorize</code> endpoint:</p>
 
 <pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-keyword">https</span>://monetizejs.com/authorize?response_type=code&amp;client_id=YOUR_APP_ID&amp;redirect_uri=<span class="hljs-keyword">http</span>://your_redirect_url&amp;pricing_options=charge_option_no1,subscription_option_no2</code></pre>
 
-<p>Here, you will provide us with a comma separated list of <code>pricing_options</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will be performed.</p>
+<p>Provide us with a comma separated list of <code>pricing_options</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will occur.</p>
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can use the <code>summary</code> query parameter:</p>
 
-
-
 <pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-keyword">https</span>://monetizejs.com/authorize?response_type=code&amp;client_id=YOUR_APP_ID&amp;redirect_uri=<span class="hljs-keyword">http</span>://your_redirect_url&amp;summary=<span class="hljs-constant">true</span></code></pre>
 
-<p>After login and payment, we will redirect the user back to your <code>redirect_uri</code> with an authorization code (make sure you have declared the redirect URL in your application settings). To retrieve an access token using the authorization code, you will call the <code>token</code> endpoint from your back-end:</p>
-
-
+<p>After login and payment, we will redirect the user back to your <code>redirect_uri</code> with an authorization code (make sure you have declared the redirect URL in your application settings). To retrieve user’s payments and an access token for future validations, you will call the <code>token</code> endpoint from your back-end:</p>
 
 <pre class="prettyprint"><code class="language-bash hljs ">curl -X POST <span class="hljs-operator">-d</span> <span class="hljs-string">'client_id=YOUR_APP_ID&amp;client_secret=YOUR_APP_SECRET&amp;code=YOUR_AUTHORIZATION_CODE&amp;grant_type=authorization_code'</span> https://monetizejs.com/token</code></pre>
 
-<blockquote>
-  <p><strong>Note</strong>: You are responsible for keeping your <code>client_secret</code> and your users’ access tokens in a safe place.</p>
-</blockquote>
+<p>The response will contain user’s payments so that you don’t have to call the REST API straight away to validate payments:</p>
 
-<p>This access token can be used to securely verify payments from your server using the following REST API. Note that it has no expiration, so you can reuse it anytime to validate user payments. To perform other payments, you will start a new OAuth2 flow, changing the <code>pricing_options</code> parameter to your need.</p>
+<pre class="prettyprint"><code class=" hljs r">{
+    <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"ACCESS_TOKEN"</span>,
+    <span class="hljs-string">"token_type"</span>: <span class="hljs-string">"Bearer"</span>,
+    <span class="hljs-string">"app"</span>: <span class="hljs-string">"APP_ID"</span>,
+    <span class="hljs-string">"user"</span>: <span class="hljs-string">"USER_ID"</span>,
+    <span class="hljs-string">"payments"</span>: {
+        <span class="hljs-keyword">...</span>
+    }
+}</code></pre>
+
+<p>Note that the access token has no expiration, so you can reuse it anytime to check user’s payments using the REST API. To perform another payment, you will start a new OAuth2 flow, changing the <code>pricing_options</code> parameter to your need.</p>
+
+<blockquote>
+  <p><strong>Note</strong>: You are responsible for keeping your <code>client_secret</code> and users’ <code>access_token</code> in a safe place.</p>
+</blockquote>
 
 <hr>
 
@@ -253,13 +255,11 @@ title: API
 
 
 
-<pre class="prettyprint"><code class="language-bash hljs ">curl https://monetizejs.com/api/payments?access_token=USER_TOKEN_HERE</code></pre>
+<pre class="prettyprint"><code class="language-bash hljs ">curl https://monetizejs.com/api/payments?access_token=ACCESS_TOKEN</code></pre>
 
 <p>Or in the authorization header of the HTTP request:</p>
 
-
-
-<pre class="prettyprint"><code class="language-bash hljs ">curl https://monetizejs.com/api/payments -H <span class="hljs-string">"Authorization: Bearer USER_TOKEN_HERE"</span></code></pre>
+<pre class="prettyprint"><code class="language-bash hljs ">curl https://monetizejs.com/api/payments -H <span class="hljs-string">"Authorization: Bearer ACCESS_TOKEN"</span></code></pre>
 
 <blockquote>
   <p><strong>Note:</strong> You can retrieve an access token using the OAuth2 flow or using the <a href="#monetizejs">Monetize.js client-side library</a>. All you have to do is call <code>getTokenImmediate</code> or <code>getTokenInteractive</code> the same way you would call <code>getPaymentsImmediate</code> or <code>getPaymentsInteractive</code>. Unlike the OAuth2 token, the validity of a client side token is 1 hour (automatically refreshed by the Monetize.js library).</p>
@@ -267,9 +267,7 @@ title: API
 
 <p>The end point supports CORS, so you can call it from the browser:</p>
 
-
-
-<pre class="prettyprint"><code class="language-js hljs ">$.ajax(<span class="hljs-string">'https://monetizejs.com/api/payments?access_token=USER_TOKEN_HERE'</span>)
+<pre class="prettyprint"><code class="language-js hljs ">$.ajax(<span class="hljs-string">'https://monetizejs.com/api/payments?access_token=ACCESS_TOKEN'</span>)
     .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(payments)</span> {</span>
         ...
     });</code></pre>
@@ -277,8 +275,6 @@ title: API
 <p>JSONP is also supported using the <code>callback</code> parameter.</p>
 
 <hr>
-
-
 
 <h2 id="couchdb">CouchDB</h2>
 
@@ -312,4 +308,4 @@ title: API
 
 
 
-<pre class="prettyprint"><code class="language-bash hljs ">curl -G <span class="hljs-operator">-d</span> <span class="hljs-string">'key=["A_USER_ID","YOUR_APP_ID"]&amp;include_docs=true&amp;reduce=false'</span> --cookie ./tmp_file http://db.monetizejs.com/user_app_payments/_design/by_user_and_app/_view/default</code></pre>
+<pre class="prettyprint"><code class="language-bash hljs ">curl -G <span class="hljs-operator">-d</span> <span class="hljs-string">'key=["USER_ID","APP_ID"]&amp;include_docs=true&amp;reduce=false'</span> --cookie ./tmp_file http://db.monetizejs.com/user_app_payments/_design/by_user_and_app/_view/default</code></pre>
