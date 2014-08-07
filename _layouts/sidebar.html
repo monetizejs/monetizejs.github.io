@@ -11,16 +11,11 @@
     <div class="row">
         <script>
             $(function() {
-                var sidebarItems = '';
-                $('h1, h2').each(function() {
-                    if(this.tagName == 'H1') {
-                        sidebarItems += '<li class="tab-title"><h4>' + this.innerHTML + '</h4></li>';
-                    }
-                    else {
-                        sidebarItems += '<li class="tab-item"><a href="#' + this.id + '"><span class="glyphicon glyphicon-chevron-right"></span> ' + this.innerHTML + '</a></li>';
-                    }
+                var sidebarItems = '<br>';
+                $('h2').each(function() {
+                    sidebarItems += '<li class="tab-item"><a href="#' + this.id + '">' + this.innerHTML + ' <span class="glyphicon glyphicon-chevron-right"></span></a></li>';
                 });
-                sidebarItems += '<br><a class="btn btn-link" id="scroll-top"><span class="glyphicon glyphicon-arrow-up"></span>Up</a>';
+                sidebarItems += '<br><a class="pull-right btn btn-link" id="scroll-top"><span class="glyphicon glyphicon-arrow-up"></span>Up</a>';
                 $('.side-bar ul').html(sidebarItems).find('li.tab-item:first').addClass('active');
                 $('#scroll-top').click(function() {
                     $('html, body').animate({ scrollTop: 0 }, "slow");
