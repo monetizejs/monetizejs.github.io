@@ -21,7 +21,7 @@ title: API
 
 <ul>
 <li>You implement payments yourself, however it implies heavy developments in back-end, or</li>
-<li>You deal with a store, but it may cost you a substantial amount of the price.</li>
+<li>You deal with a store, but it will usually cost you 30% of the sale price!</li>
 </ul>
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> on top of Stripe’s fees), it provides painless ways to <strong>ask your users for payments</strong> and frequently <strong>check that users have actually paid</strong> without the need of implementing server logic or user management.</p>
@@ -212,6 +212,8 @@ title: API
 </blockquote>
 
 <p>To ask a user for sign in and payments, just redirect the user to the <code>authorize</code> endpoint:</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-keyword">https</span>://monetizejs.com/authorize?response_type=code&amp;client_id=YOUR_APP_ID&amp;redirect_uri=<span class="hljs-keyword">http</span>://your_redirect_url&amp;pricing_options=charge_option_no1,subscription_option_no2</code></pre>
 
