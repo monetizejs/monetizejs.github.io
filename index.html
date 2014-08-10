@@ -53,23 +53,23 @@ title: API
 <p>A redirection to the MonetizeJS platform is necessary when:</p>
 
 <ul>
-<li>the user is not logged in to MonetizeJS, or</li>
+<li>the user hasn’t signed in to MonetizeJS, or</li>
 <li>the user doesn’t have the required pricing option.</li>
 </ul>
 
 <blockquote>
-  <p><strong>Note:</strong> once logged in for the first time, a user will automatically be logged on that computer using a “remember me” cookie. This will prevent you from having to perform a redirection every time a user comes back to your application.</p>
+  <p><strong>Note:</strong> once signed in for the first time, a user will automatically be signed in on that computer using a “remember me” cookie. This will prevent you from having to perform a redirection every time a user comes back to your application.</p>
 </blockquote>
 
 <p>Here is a typical workflow:</p>
 
 <ul>
-<li><p><strong>Step 1:</strong> Retrieve user’s once-off charge or subscription in your application without redirection (user has to be logged in).</p></li>
+<li><p><strong>Step 1:</strong> Retrieve user’s once-off charge or subscription in your application without redirection (user has to sign in).</p></li>
 <li><p><strong>Step 2.a:</strong> If retrieve succeeded, validate once-off charge/subscription in your application. If it doesn’t meet your expectations, redirect the user to the platform for payment.</p></li>
-<li><p><strong>Step 2.b:</strong> If retrieve failed, redirect the user to the platform for login and, eventually, for payment.</p></li>
+<li><p><strong>Step 2.b:</strong> If retrieve failed, redirect the user to the platform for sign in and, eventually, for payment.</p></li>
 </ul>
 
-<p>It’s important to note that, if you have to redirect the user for login, you can also tell the platform what you expect as required pricing options. Thus, the platform will be able to ask the user for a payment at the same time.</p>
+<p>It’s important to note that, if you have to redirect the user for sign in, you can also tell the platform what you expect as required pricing options. Thus, the platform will be able to ask the user for a payment at the same time.</p>
 
 <hr>
 
@@ -108,26 +108,26 @@ title: API
 <p><strong>Monetize.js</strong> provides two methods to get user’s payments:</p>
 
 <ul>
-<li><strong>immmediate</strong>: if the user is already logged in and has already paid, no redirection is required, the payments are silently retrieved.</li>
-<li><strong>interactive</strong>: when the user has to login or make a payment, a redirection to the platform has to be performed.</li>
+<li><strong>immmediate</strong>: if the user has already signed in and has already paid, no redirection is required, the payments are silently retrieved.</li>
+<li><strong>interactive</strong>: when the user has to sign in or make a payment, a redirection to the platform has to be performed.</li>
 </ul>
 
 
 
 <h4 id="immediate">Immediate</h4>
 
-<p><code>getPaymentsImmediate</code> retrieves payments without redirection, assuming the user is already logged in:</p>
+<p><code>getPaymentsImmediate</code> retrieves payments without redirection, assuming the user has already signed in:</p>
 
 
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
     <span class="hljs-keyword">if</span>(payments) {
-        <span class="hljs-comment">// User is logged in, you can check payments</span>
+        <span class="hljs-comment">// User has signed in, you can check payments</span>
         console.log(payments.chargeOption);
         console.log(payments.subscriptionOption);
     }
     <span class="hljs-keyword">else</span> {
-        <span class="hljs-comment">// User is not logged in...</span>
+        <span class="hljs-comment">// User has not signed in...</span>
     }
 });</code></pre>
 
@@ -141,7 +141,7 @@ title: API
 
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
-<p>If the user is not logged in or doesn’t have the expected pricing option, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform.</p>
+<p>If the user hasn’t signed in or doesn’t have the expected pricing option, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform.</p>
 
 <p>Here is how you perform a full-page redirection:</p>
 
@@ -165,7 +165,7 @@ title: API
 
 <p><a class="btn btn-warning" id="payments-interactive-redirect-summary">Try it</a></p>
 
-<p>After login and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
+<p>After sign in and payment, the platform will redirect the user back to your page where you will call <code>getPaymentsImmediate</code> again.</p>
 
 <blockquote>
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you’ve added the URL to your list of authorized redirect URLs):</p>
@@ -207,15 +207,13 @@ title: API
 
 <p><strong>MonetizeJS</strong> platform is OAuth2 compliant. Which means you can perform payments through a standard OAuth2 flow and check payments using a bearer token.</p>
 
-<p>When integrating with a classic OAuth2 identity providers like Google or Facebook, you usually perform a redirection for login and ask the user for permissions. That’s what you will do with MonetizeJS, except that here, permissions are actually a payment.</p>
+<p>When integrating with a classic OAuth2 identity providers like Google or Facebook, you usually perform a redirection for sign in and ask the user for permissions. That’s what you will do with MonetizeJS, except that here, permissions are actually a payment.</p>
 
 <blockquote>
   <p><strong>Note</strong>: The following paragraph describes how to implement the “authorization code” flow. The platform also supports “implicit grant”, but you probably want to use <a href="#monetizejs">Monetize.js client-side library</a> instead.</p>
 </blockquote>
 
-<p>To ask a user for login and payments, just redirect the user to the <code>authorize</code> endpoint:</p>
-
-
+<p>To ask a user for sign in and payments, just redirect the user to the <code>authorize</code> endpoint:</p>
 
 <pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-keyword">https</span>://monetizejs.com/authorize?response_type=code&amp;client_id=YOUR_APP_ID&amp;redirect_uri=<span class="hljs-keyword">http</span>://your_redirect_url&amp;pricing_options=charge_option_no1,subscription_option_no2</code></pre>
 
