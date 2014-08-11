@@ -26,6 +26,8 @@ title: API
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> on top of Stripe’s fees), it provides painless ways to <strong>ask your users for payments</strong> and frequently <strong>check that users have actually paid</strong> without the need of implementing server logic or user management.</p>
 
+
+
 <h3 id="how">How ?</h3>
 
 <p><strong>MonetizeJS</strong> platform is built on top of <a href="https://stripe.com/">Stripe</a>, which lets you charge users and handle recurring payments. Beside calling Stripe to perform payments, MonetizeJS handles user identities for you, so that you don’t have to manage users in a database. Each MonetizeJS user is potentially linked to your application via the payment of <strong>pricing options</strong> that you define for your application. </p>
@@ -219,7 +221,7 @@ title: API
 
 <p>Provide us with a comma separated list of <code>pricing_options</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will be asked.</p>
 
-<p><a class="btn btn-warning" id="oauth2-authorize">Try it</a></p>
+<p><a class="btn btn-warning" href="https://monetizejs.com/authorize?response_type=code&amp;client_id=rgqfxEqCTsPvUoxF&amp;redirect_uri=http://api.monetizejs.com/&amp;pricing_options=subscription_option_no1,charge_option_no2">Try it</a></p>
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can do that using the <code>summary</code> query parameter:</p>
 
