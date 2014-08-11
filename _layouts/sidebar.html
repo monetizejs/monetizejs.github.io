@@ -12,10 +12,10 @@
         <script>
             $(function() {
                 var sidebarItems = '<br>';
-                $('h2').each(function() {
+                $('h1, h2').each(function() {
                     sidebarItems += '<li class="tab-item"><a href="#' + this.id + '">' + this.innerHTML + ' <span class="glyphicon glyphicon-chevron-right"></span></a></li>';
                 });
-                sidebarItems += '<br><a class="pull-right btn btn-link" id="scroll-top"><span class="glyphicon glyphicon-arrow-up"></span>Up</a>';
+                sidebarItems += '<br><a class="pull-right btn btn-link" id="scroll-top"><span class="glyphicon glyphicon-arrow-up"></span>Top</a>';
                 $('.side-bar ul').html(sidebarItems).find('li.tab-item:first').addClass('active');
                 $('#scroll-top').click(function() {
                     $('html, body').animate({ scrollTop: 0 }, "slow");
@@ -36,7 +36,7 @@
                         alert('Error: ' + JSON.stringify(err));
                     }
                     else if(payments) {
-                        alert('User is logged in!\n\nCharge option: ' + JSON.stringify(payments.chargeOption) + '\n\nSubscription option: ' + JSON.stringify(payments.subscriptionOption));
+                        alert('User has signed in!\n\nCharge option: ' + JSON.stringify(payments.chargeOption) + '\n\nSubscription option: ' + JSON.stringify(payments.subscriptionOption));
                     }
                 }
                 var monetize = MonetizeJS({
