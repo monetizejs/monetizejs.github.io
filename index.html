@@ -98,10 +98,8 @@ title: API
 
 
 <pre class="prettyprint"><code class="language-js hljs "><span class="hljs-keyword">var</span> monetize = MonetizeJS({
-applicationID: <span class="hljs-string">'YOUR_APP_ID'</span>
+    applicationID: <span class="hljs-string">'YOUR_APP_ID'</span>
 });</code></pre>
-
-
 
 <h3 id="obtain-user-payments">Obtain user payments</h3>
 
@@ -121,14 +119,14 @@ applicationID: <span class="hljs-string">'YOUR_APP_ID'</span>
 
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsImmediate(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
-<span class="hljs-keyword">if</span>(payments) {
-<span class="hljs-comment">// User has signed in, you can check payments</span>
-console.log(payments.chargeOption);
-console.log(payments.subscriptionOption);
-}
-<span class="hljs-keyword">else</span> {
-<span class="hljs-comment">// User has not signed in...</span>
-}
+    <span class="hljs-keyword">if</span>(payments) {
+        <span class="hljs-comment">// User is signed in, you can check payments</span>
+        console.log(payments.chargeOption);
+        console.log(payments.subscriptionOption);
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// User is not signed in...</span>
+    }
 });</code></pre>
 
 <p><a class="btn btn-warning" id="payments-immediate">Try it</a></p>
@@ -136,8 +134,6 @@ console.log(payments.subscriptionOption);
 <blockquote>
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
-
-
 
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
@@ -148,7 +144,7 @@ console.log(payments.subscriptionOption);
 
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
-pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
+    pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
 });</code></pre>
 
 <p>Provide us with a list of <code>pricingOptions</code> to let us know which options you expect the user to pay for. Note that if the user has already paid for one of these options (or if you don’t provide any option), no payment will be requested.</p>
@@ -157,10 +153,8 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can do that using the <code>summary</code> parameter:</p>
 
-
-
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
-summary: <span class="hljs-literal">true</span>
+    summary: <span class="hljs-literal">true</span>
 });</code></pre>
 
 <p><a class="btn btn-warning" id="payments-interactive-redirect-summary">Try it</a></p>
@@ -171,14 +165,10 @@ summary: <span class="hljs-literal">true</span>
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you’ve added the URL to your list of authorized redirect URLs):</p>
 </blockquote>
 
-
-
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
-pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>],
-redirectURL: <span class="hljs-string">'http://your_redirect_url'</span>
+    pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>],
+    redirectURL: <span class="hljs-string">'http://your_redirect_url'</span>
 });</code></pre>
-
-
 
 <h4 id="interactive-with-pop-up">Interactive with pop-up</h4>
 
@@ -187,9 +177,9 @@ redirectURL: <span class="hljs-string">'http://your_redirect_url'</span>
 
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
-pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
+    pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
 }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, payments)</span> {</span>
-...
+    ...
 });</code></pre>
 
 <p><a class="btn btn-warning" id="payments-interactive-popup">Try it</a></p>
@@ -200,8 +190,6 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 </blockquote>
 
 <hr>
-
-
 
 <h2 id="oauth2">OAuth2</h2>
 
@@ -239,13 +227,13 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 
 
 <pre class="prettyprint"><code class=" hljs r">{
-<span class="hljs-string">"access_token"</span>: <span class="hljs-string">"ACCESS_TOKEN"</span>,
-<span class="hljs-string">"token_type"</span>: <span class="hljs-string">"Bearer"</span>,
-<span class="hljs-string">"app"</span>: <span class="hljs-string">"APP_ID"</span>,
-<span class="hljs-string">"user"</span>: <span class="hljs-string">"USER_ID"</span>,
-<span class="hljs-string">"payments"</span>: {
-<span class="hljs-keyword">...</span>
-}
+    <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"ACCESS_TOKEN"</span>,
+    <span class="hljs-string">"token_type"</span>: <span class="hljs-string">"Bearer"</span>,
+    <span class="hljs-string">"app"</span>: <span class="hljs-string">"APP_ID"</span>,
+    <span class="hljs-string">"user"</span>: <span class="hljs-string">"USER_ID"</span>,
+    <span class="hljs-string">"payments"</span>: {
+        <span class="hljs-keyword">...</span>
+    }
 }</code></pre>
 
 <p>Note that the access token has no expiration date, so you can reuse it anytime to check user payments using the REST API. To perform another payment, you will start a new OAuth2 flow, changing the <code>pricing_options</code> parameter to your needs.</p>
@@ -255,8 +243,6 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 </blockquote>
 
 <hr>
-
-
 
 <h2 id="rest">REST</h2>
 
@@ -283,15 +269,13 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 
 
 <pre class="prettyprint"><code class="language-js hljs ">$.ajax(<span class="hljs-string">'https://monetizejs.com/api/payments?access_token=ACCESS_TOKEN'</span>)
-.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(payments)</span> {</span>
-...
-});</code></pre>
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(payments)</span> {</span>
+        ...
+    });</code></pre>
 
 <p>JSONP is also supported using the <code>callback</code> parameter.</p>
 
 <hr>
-
-
 
 <h2 id="couchdb">CouchDB</h2>
 
@@ -346,7 +330,7 @@ pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <sp
 
 
 <pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://monetizejs.com/authorize?client_id=YOUR_APP_ID&amp;summary=true"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"//cdn.monetizejs.com/resources/button-32.png"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"//cdn.monetizejs.com/resources/button-32.png"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></code></pre>
 
 <p>Or the following markdown:</p>
