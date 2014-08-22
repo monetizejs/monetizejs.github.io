@@ -2,7 +2,6 @@
 layout: default
 title: FAQ
 ---
-
 <h1 id="faq">FAQ</h1>
 
 <hr>
@@ -11,13 +10,22 @@ title: FAQ
 
 <p>MonetizeJS provides user payment services for applications that aren’t tied to any server or that don’t want to implement user management.</p>
 
+<p><strong>How much does it cost?</strong></p>
+
+<p>As a seller, MonetizeJS applies a <strong>5%</strong> fee on top of Stripe’s processing fees. MonetizeJS does not charge a fee to use the service as a buyer, but your bank may charge a fee in connection with the debiting of your card.</p>
+
+<p><strong>How do I cancel a subscription?</strong></p>
+
+<p>To cancel a subscription, go to “My apps”, select the application and click “Unsubscribe”. The subscription will remain active until the end of the billing period, at which point it won’t be renewed.</p>
+
 <p><strong>How can I perform payments using MonetizeJS?</strong></p>
 
-<p>Payments are performed via redirections to the MonetizeJS platform. You have 2 ways to perform a redirection:</p>
+<p>Payments are performed via redirections to the MonetizeJS platform. You have 3 ways to perform the redirection:</p>
 
 <ul>
 <li>Using the <strong>monetize.js cliend-side library</strong>, you can redirect the user from your application (full-page redirection or pop-up) using simple JavaScript calls.</li>
 <li>Using the <strong>OAuth2 flow</strong>, you can redirect the user to the <code>authorize</code> endpoint.</li>
+<li>Using the <strong>MonetizeJS button</strong>.</li>
 </ul>
 
 <p><strong>How can I check payments from my application?</strong></p>
@@ -33,10 +41,6 @@ title: FAQ
 <p><strong>What are the requirements for my application to use MonetizeJS?</strong></p>
 
 <p>MonetizeJS platform requires an HTML5 compatible environment to handle redirections, including modern browsers (Chrome, Firefox, IE9+, Safari…), hybrid mobile applications, HTML5 based desktop applications…</p>
-
-<p><strong>How much does it cost?</strong></p>
-
-<p>MonetizeJS applies a <strong>5%</strong> fee on top of Stripe’s processing fees.</p>
 
 <p><strong>How are users impacted by pricing option modifications?</strong></p>
 
