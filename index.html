@@ -2,16 +2,15 @@
 layout: sidebar
 title: API
 ---
-
 <h1 id="api">API</h1>
 
 <hr>
 
 
 
-<h3 id="what">What ?!!</h3>
+<h3 id="why-are-you-reading-this">Why are you reading this?</h3>
 
-<p>If you are reading this, chances are you are a developer who wants to sell an HTML5 application and you’re probably asking yourself:</p>
+<p>If you are reading this, chances are you are a developer who wants to monetize an HTML5 application and you’re probably asking yourself:</p>
 
 <blockquote>
   <p><em>“How can I handle payments in my application?”</em></p>
@@ -20,13 +19,11 @@ title: API
 <p>There are two typical answers to this question:</p>
 
 <ul>
-<li>You implement payments yourself, but this implies heavy developments in back-end, or</li>
+<li>You implement a payment solution yourself, but, it will require a lot of development, or</li>
 <li>You deal with a store, but that will usually cost you 30% of the sale price!</li>
 </ul>
 
 <p><strong>MonetizeJS</strong> is the best of both worlds. Whilst applying a fairly low rate (<strong>5%</strong> on top of Stripe’s fees), it provides painless ways to <strong>ask your users for payments</strong> and frequently <strong>check that users have actually paid</strong> without the need to implement server logic or user management.</p>
-
-
 
 <h3 id="how">How ?</h3>
 
@@ -73,8 +70,6 @@ title: API
 
 <hr>
 
-
-
 <h2 id="monetizejs">Monetize.js</h2>
 
 <p><strong>Monetize.js</strong> library is suitable for client side applications (browser, HTML5 application…).</p>
@@ -100,6 +95,8 @@ title: API
 <pre class="prettyprint"><code class="language-js hljs "><span class="hljs-keyword">var</span> monetize = MonetizeJS({
     applicationID: <span class="hljs-string">'YOUR_APP_ID'</span>
 });</code></pre>
+
+
 
 <h3 id="obtain-user-payments">Obtain user payments</h3>
 
@@ -135,6 +132,8 @@ title: API
   <p><strong>Note:</strong> In most cases, when an error occurs, you will have to call <code>getPaymentsInteractive</code>.</p>
 </blockquote>
 
+
+
 <h4 id="interactive-with-redirection">Interactive with redirection</h4>
 
 <p>If the user hasn’t signed in or doesn’t have the expected pricing option, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform.</p>
@@ -153,6 +152,8 @@ title: API
 
 <p>If you want to give the user the opportunity to review all the pricing options and to manage previous payments, you can do that using the <code>summary</code> parameter:</p>
 
+
+
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     summary: <span class="hljs-literal">true</span>
 });</code></pre>
@@ -165,10 +166,14 @@ title: API
   <p><strong>Tip:</strong> You can specify a custom redirect URL (make sure you’ve added the URL to your list of authorized redirect URLs):</p>
 </blockquote>
 
+
+
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>],
     redirectURL: <span class="hljs-string">'http://your_redirect_url'</span>
 });</code></pre>
+
+
 
 <h4 id="interactive-with-pop-up">Interactive with pop-up</h4>
 
@@ -190,6 +195,8 @@ title: API
 </blockquote>
 
 <hr>
+
+
 
 <h2 id="oauth2">OAuth2</h2>
 
@@ -244,6 +251,8 @@ title: API
 
 <hr>
 
+
+
 <h2 id="rest">REST</h2>
 
 <p><strong>MonetizeJS</strong> platform has a single end-point in its REST API, <code>GET /api/payments</code>, the purpose of which is to retrieve and verify user payments for a given application. An access token has to be passed as a URL parameter:</p>
@@ -276,6 +285,8 @@ title: API
 <p>JSONP is also supported using the <code>callback</code> parameter.</p>
 
 <hr>
+
+
 
 <h2 id="couchdb">CouchDB</h2>
 
@@ -334,6 +345,8 @@ title: API
 <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></code></pre>
 
 <p>Or the following markdown:</p>
+
+
 
 <pre class="prettyprint"><code class="language-markdown hljs ">[<span class="hljs-link_label">![</span>](<span class="hljs-link_url">//cdn.monetizejs.com/resources/button-26.png</span>)](<span class="hljs-link_url">https://monetizejs.com/authorize?client_id=YOUR_APP_ID&amp;summary=true</span>)</code></pre>
 
