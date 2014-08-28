@@ -136,13 +136,11 @@ title: API
 
 
 
-<h4 id="interactive-with-redirection">Interactive with redirection</h4>
+<h4 id="interactive-with-full-page-redirection">Interactive with full-page redirection</h4>
 
 <p>If the user hasn’t signed in or doesn’t have the expected pricing option, you will have to call <code>getPaymentsInteractive</code> to redirect the user to the platform.</p>
 
 <p>Here is how you perform a full-page redirection:</p>
-
-
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
@@ -179,9 +177,7 @@ title: API
 
 <h4 id="interactive-with-pop-up">Interactive with pop-up</h4>
 
-<p>If you prefer a pop-up window in order to keep the current page context, just add a callback (much like <code>getPaymentsImmediate</code>):</p>
-
-
+<p>If you prefer a pop-up window in order to keep the current page context, just add a callback, much like <code>getPaymentsImmediate</code>:</p>
 
 <pre class="prettyprint"><code class="language-js hljs ">monetize.getPaymentsInteractive({
     pricingOptions: [<span class="hljs-string">'subscription_option_no1'</span>, <span class="hljs-string">'charge_option_no2'</span>]
